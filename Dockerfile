@@ -16,6 +16,7 @@ RUN docker-php-ext-install zip
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN composer install --no-dev --optimize-autoloader
+RUN chmod -R 777 storage bootstrap/cache
 
 EXPOSE 10000
 
