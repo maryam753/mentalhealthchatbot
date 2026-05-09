@@ -134,10 +134,10 @@ p {
  
 #header .header {
   min-height: 8vh;
-  width: 100%;                        /* ← full screen width */
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;            /* nav-bar centred inside */
+  justify-content: center;
   background-color: rgba(255,255,255,0.92);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
@@ -150,8 +150,8 @@ p {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 100%;                    /* ← remove the 1300px cap */
-  padding: 5px 40px;                    /* comfortable side breathing room */
+  max-width: 100%;
+  padding: 5px 40px;
   height: 100%;
 }
 
@@ -1010,53 +1010,261 @@ p {
   100% { color: var(--amber-main); font-weight: 700; }
 }
 
-/* 
-   TABLET  ≥768px */
-@media only screen and (min-width: 768px) {
-  .cta { font-size: 1.6rem; padding: 14px 36px; }
-  h1.section-title { font-size: 4rem; }
 
+/* ============================================================
+   RESPONSIVE BREAKPOINTS
+   ============================================================ */
+
+/* ── MOBILE  <480px ── */
+@media only screen and (max-width: 480px) {
+  html { font-size: 9px; }
+
+  /* Header */
+  #header .nav-bar { padding: 5px 16px; }
+  .logo-img { width: 36px; height: 36px; }
+  .brand h1 { font-size: 1.8rem; }
+  #header .hamburger { transform: scale(0.7); margin-right: 4px; }
+
+  /* Hero */
   .hero.container.hero-wrapper {
-    flex-direction: row;
-    text-align: left;
-  }
-  .hero-image img { max-width: 220px; }
-
-  #hero h1 { font-size: 5.5rem; }
-
-  #team .team-bottom .team-item { flex-basis: 45%; }
-
-  #projects .project-item { flex-direction: row; height: auto; }
-  #projects .project-item:nth-child(even) { flex-direction: row-reverse; }
-  #projects .project-img { min-height: 320px; }
-
-  #about .about { flex-direction: row; }
-  #about .col-left { width: 500px; height: 380px; padding-left: 40px; }
-  #about .col-right { text-align: left; padding: 30px; }
-  #about .col-right h1 { text-align: left; }
-
-  #contact .contact { flex-direction: column; padding: 80px 0; }
-  #contact .contact-items {
-    flex-direction: row;
-    justify-content: space-evenly;
-    margin: 40px 0 0;
-  }
-  #contact .contact-item {
-    width: 30%;
-    margin: 0;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    text-align: left;
+    padding: 28px 20px 0;
+    gap: 24px;
   }
-  #contact .icon { margin: 0 16px 0 0; flex-shrink: 0; }
-  #contact .contact-info { text-align: left; }
-  #contact .contact-info h1 { text-align: left; }
-  #contact .contact-info h2 { text-align: left; }
+  .hero-text {
+    flex: none;
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    padding-bottom: 0;
+  }
+  #hero h1 { font-size: 3.2rem; }
+  .hero-desc { font-size: 1.3rem; max-width: 100%; }
+  .hero-buttons {
+    justify-content: center;
+    gap: 10px;
+  }
+  .cta { font-size: 1.3rem; padding: 11px 22px; margin-top: 20px; }
+  .btn-outline-hero { font-size: 1.3rem; padding: 11px 20px; margin-top: 20px; margin-left: 0; }
+  .hero-badge { font-size: 0.95rem; }
+  .social-proof { justify-content: center; }
 
-  .stats-strip { grid-template-columns: repeat(3,1fr); }
+  .hero-image {
+    flex: none;
+    width: 100%;
+    align-items: center;
+  }
+  .hero-visual-panel { padding: 16px 20px 0; border-radius: 20px 20px 0 0; }
+  .hero-image img { max-width: 140px; }
+  .bunny-bubble { max-width: 200px; margin-bottom: 16px; }
+  .bunny-bubble p { font-size: 1.1rem; }
+
+  /* Stats */
+  .stats-strip {
+    grid-template-columns: 1fr;
+  }
+  .stat-item {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 16px 20px;
+  }
+  .stat-item:last-child { border-bottom: none; }
+  .stat-num { font-size: 2.2rem; }
+
+  /* Why ElyBun */
+  #why-elybun .why-elybun { padding: 50px 16px; }
+  .section-title { font-size: 2.6rem; }
+  .why-card { max-width: 100%; flex: 1 1 100%; }
+
+  /* Privacy */
+  .section {
+    flex-direction: column;
+    padding: 50px 20px;
+    gap: 28px;
+    text-align: center;
+  }
+  .section img { width: 100%; max-width: 280px; height: auto; }
+  .text-box h2 { font-size: 2.4rem; text-align: center; }
+  .text-box p { font-size: 1.3rem; }
+
+  /* Team */
+  #team .team { padding: 50px 0; }
+  #team .team-item { flex-basis: 100%; }
+
+  /* Services */
+  #projects .projects { padding: 50px 16px; }
+  #projects .project-item { flex-direction: column; }
+  #projects .project-img { min-height: 180px; flex-basis: auto; }
+  #projects .project-info { padding: 24px 20px; flex-basis: auto; }
+  #projects .project-info h2 { font-size: 1.7rem; }
+
+  /* About */
+  #about .about { padding: 50px 16px; gap: 28px; }
+  #about .col-left { width: 200px; height: 260px; }
+  #about .col-right h1 { text-align: center !important; }
+
+  /* Contact */
+  #contact .contact { width: 95%; padding: 50px 0; }
+  #contact .contact-item { width: 95%; padding: 20px 16px; }
+  #contact .contact-info h2 { font-size: 1.2rem; word-break: break-word; }
+
+  /* Footer */
+  #footer .footer { padding: 40px 16px 20px; }
+  #footer .brand h1 { font-size: 2rem; }
+  #footer h2 { font-size: 1.3rem; }
+
+  /* Modal */
+  .disclaimer-card { padding: 28px 20px; }
+  .modal-buttons { flex-direction: column; }
 }
 
-/*  DESKTOP  ≥1200px */
+/* ── SMALL MOBILE  481px – 767px ── */
+@media only screen and (min-width: 481px) and (max-width: 767px) {
+  html { font-size: 9.5px; }
+
+  /* Header */
+  #header .nav-bar { padding: 5px 20px; }
+
+  /* Hero */
+  .hero.container.hero-wrapper {
+    flex-direction: column;
+    align-items: center;
+    padding: 36px 28px 0;
+    gap: 28px;
+  }
+  .hero-text {
+    flex: none;
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    padding-bottom: 0;
+  }
+  #hero h1 { font-size: 3.8rem; }
+  .hero-desc { font-size: 1.35rem; max-width: 100%; }
+  .hero-buttons { justify-content: center; }
+  .btn-outline-hero { margin-left: 0; }
+  .social-proof { justify-content: center; }
+
+  .hero-image { flex: none; width: 100%; align-items: center; }
+  .hero-image img { max-width: 160px; }
+
+  /* Stats */
+  .stats-strip { grid-template-columns: repeat(3, 1fr); }
+  .stat-num { font-size: 2.2rem; }
+  .stat-item { padding: 16px 10px; }
+
+  /* Why ElyBun */
+  #why-elybun .why-elybun { padding: 60px 20px; }
+  .section-title { font-size: 2.8rem; }
+  .why-card { flex: 1 1 calc(50% - 12px); max-width: calc(50% - 12px); }
+
+  /* Privacy */
+  .section {
+    flex-direction: column;
+    padding: 60px 28px;
+    gap: 32px;
+    text-align: center;
+  }
+  .section img { width: 100%; max-width: 320px; height: auto; }
+  .text-box h2 { font-size: 2.8rem; text-align: center; }
+
+  /* Services */
+  #projects .project-item { flex-direction: column; }
+  #projects .project-img { min-height: 220px; flex-basis: auto; }
+  #projects .project-info { flex-basis: auto; }
+
+  /* About */
+  #about .about { padding: 60px 24px; gap: 32px; }
+  #about .col-left { width: 220px; height: 290px; }
+
+  /* Contact */
+  #contact .contact-item { width: 90%; }
+  #contact .contact-info h2 { word-break: break-word; }
+
+  /* Modal */
+  .disclaimer-card { padding: 30px 22px; }
+}
+
+/* ── TABLET  768px – 1199px ── */
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+  html { font-size: 9.5px; }
+
+  .cta { font-size: 1.5rem; padding: 13px 30px; }
+  h1.section-title { font-size: 3.6rem; }
+
+  /* Header */
+  #header .nav-bar { padding: 5px 28px; }
+
+  /* Hero — side by side but tighter */
+  .hero.container.hero-wrapper {
+    flex-direction: row;
+    padding: 48px 32px 0;
+    gap: 28px;
+  }
+  .hero-text { flex: 1 1 55%; max-width: none; padding-bottom: 40px; }
+  #hero h1 { font-size: 4.2rem; }
+  .hero-desc { font-size: 1.35rem; }
+  .hero-image { flex: 0 0 38%; }
+  .hero-image img { max-width: 180px; }
+  .bunny-bubble { max-width: 200px; }
+
+  /* Stats */
+  .stat-item { padding: 18px 14px; }
+  .stat-num { font-size: 2.2rem; }
+
+  /* Why ElyBun */
+  #why-elybun .why-elybun { padding: 70px 24px; }
+  .section-title { font-size: 3.2rem; }
+  .why-card { flex: 1 1 calc(50% - 12px); max-width: calc(50% - 12px); }
+
+  /* Privacy */
+  .section { padding: 70px 32px; gap: 48px; }
+  .section img { width: 300px; }
+  .text-box h2 { font-size: 2.8rem; }
+
+  /* Team */
+  #team .team-bottom .team-item { flex-basis: calc(50% - 12px); }
+
+  /* Services */
+  #projects .project-item { flex-direction: row; }
+  #projects .project-item:nth-child(even) { flex-direction: row-reverse; }
+  #projects .project-img { min-height: 260px; }
+  #projects .project-info { padding: 28px 24px; }
+  #projects .project-info h2 { font-size: 1.8rem; }
+
+  /* About */
+  #about .about {
+    flex-direction: row;
+    text-align: left;
+    padding: 70px 24px;
+  }
+  #about .col-left { width: 340px; height: 320px; padding-left: 20px; flex-shrink: 0; }
+  #about .col-right { width: auto; text-align: left; padding: 20px 20px; }
+  #about .col-right h1 { text-align: left !important; }
+
+  /* Contact */
+  #contact .contact { flex-direction: column; padding: 70px 0; }
+  #contact .contact-items {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin: 32px 0 0;
+  }
+  #contact .contact-item {
+    width: calc(33% - 16px);
+    min-width: 200px;
+    margin: 0;
+    flex-direction: column;
+    align-items: center;
+  }
+  #contact .icon { margin: 0 auto 14px; }
+  #contact .contact-info h1 { text-align: center; }
+  #contact .contact-info h2 { text-align: center; word-break: break-word; }
+}
+
+/* ── DESKTOP  ≥1200px (unchanged original) ── */
 @media only screen and (min-width: 1200px) {
   #header .hamburger { display: none; }
   #header .nav-list ul {
@@ -1095,4 +1303,33 @@ p {
   .hero-image img { max-width: 240px; }
 
   #team .team-bottom .team-item { flex-basis: 28%; }
+
+  #projects .project-item { flex-direction: row; }
+  #projects .project-item:nth-child(even) { flex-direction: row-reverse; }
+  #projects .project-img { min-height: 320px; }
+
+  #about .about { flex-direction: row; }
+  #about .col-left { width: 500px; height: 380px; padding-left: 40px; }
+  #about .col-right { text-align: left; padding: 30px; }
+  #about .col-right h1 { text-align: left !important; }
+
+  #contact .contact { flex-direction: column; padding: 80px 0; }
+  #contact .contact-items {
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 40px 0 0;
+  }
+  #contact .contact-item {
+    width: 30%;
+    margin: 0;
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+  }
+  #contact .icon { margin: 0 16px 0 0; flex-shrink: 0; }
+  #contact .contact-info { text-align: left; }
+  #contact .contact-info h1 { text-align: left; }
+  #contact .contact-info h2 { text-align: left; }
+
+  .stats-strip { grid-template-columns: repeat(3,1fr); }
 }

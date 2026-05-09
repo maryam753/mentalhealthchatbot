@@ -1282,3 +1282,217 @@ body {
     font-size: 13px;
     font-family: 'Plus Jakarta Sans', 'DM Sans', sans-serif;
 }
+
+
+/* 
+   RESPONSIVE — TABLET & MOBILE
+    */
+
+/*  Sidebar toggle button (mobile only)  */
+.sidebar-toggle {
+    display: none;
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    z-index: 10000;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #534AB7;
+    border: none;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(83,74,183,0.35);
+    transition: background 0.2s;
+}
+.sidebar-toggle svg {
+    width: 16px;
+    height: 16px;
+    stroke: white;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+.sidebar-toggle:hover { background: #4238a3; }
+
+/* Overlay behind sidebar on mobile */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(38,33,92,0.45);
+    z-index: 9998;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+.sidebar-overlay.show {
+    opacity: 1;
+}
+
+/*  Tablet (≤ 900px)  */
+@media (max-width: 900px) {
+    .sidebar {
+        width: 220px;
+        min-width: 220px;
+    }
+    .chat.botMessages,
+    .typing-indicator {
+        max-width: 85%;
+    }
+    .chat.usersMessages {
+        max-width: 80%;
+    }
+}
+
+/*  Mobile (≤ 640px)  */
+@media (max-width: 640px) {
+
+    /* Show the hamburger toggle */
+    .sidebar-toggle {
+        display: flex;
+    }
+
+    /* Sidebar slides in as a drawer */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 260px;
+        min-width: 260px;
+        z-index: 9999;
+        transform: translateX(-100%);
+        transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .sidebar.open {
+        transform: translateX(0);
+    }
+    .sidebar-overlay {
+        display: block;
+    }
+
+    /* Chat area takes full width */
+    .chat-area {
+        width: 100%;
+    }
+
+    /* Header adjustments */
+    .chat-header {
+        padding: 12px 14px 12px 58px; /* leave room for hamburger */
+    }
+    .header-bot-name {
+        font-size: 13px;
+    }
+    .header-badge {
+        font-size: 10px;
+        padding: 4px 9px;
+    }
+    .helpline-btn {
+        font-size: 9px;
+        padding: 4px 7px;
+    }
+
+    /* Messages */
+    #messageDisplaySection {
+        padding: 14px 12px;
+        gap: 12px;
+    }
+    .chat.botMessages,
+    .typing-indicator {
+        max-width: 92%;
+    }
+    .chat.usersMessages {
+        max-width: 88%;
+    }
+    .botMessages .bubble,
+    .usersMessages .bubble {
+        font-size: 13px;
+        padding: 11px 14px;
+    }
+
+    /* Quick replies scroll horizontally */
+    .quick-replies {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 0 12px 10px;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+    .quick-replies::-webkit-scrollbar { display: none; }
+    .quick-reply-chip {
+        flex-shrink: 0;
+    }
+
+    /* Input box */
+    .chat-input-box {
+        padding: 8px 12px 12px;
+    }
+    .input-inner {
+        padding: 7px 7px 7px 14px;
+    }
+    .chat-input-box input {
+        font-size: 14px; /* prevent iOS zoom on focus */
+    }
+    .input-disclaimer {
+        font-size: 9px;
+    }
+
+    /* Delete modal */
+    .delete-modal {
+        width: calc(100% - 40px);
+        max-width: 320px;
+    }
+
+    /* Modals full-width on mobile */
+    .modal-dialog {
+        margin: 10px;
+        max-height: calc(100vh - 20px);
+    }
+    .modal-content.login-card,
+    .modal-content.helpline-card,
+    .modal-content.mood-modal-card {
+        border-radius: 20px;
+        max-height: calc(100vh - 20px);
+    }
+    .card-banner {
+        padding: 18px 20px 16px;
+    }
+    .card-banner h2 {
+        font-size: 17px;
+    }
+    .card-body-inner {
+        padding: 16px 18px 18px;
+    }
+    .helpline-banner {
+        padding: 24px 20px 20px;
+    }
+    .helpline-body {
+        padding: 16px 18px 20px;
+    }
+    .mood-modal-banner {
+        padding: 22px 20px 18px;
+    }
+    .mood-modal-body {
+        padding: 14px 16px 18px;
+        max-height: 260px;
+    }
+}
+
+/*  Very small phones (≤ 380px)  */
+@media (max-width: 380px) {
+    .chat-header-right {
+        gap: 5px;
+    }
+    .header-badge,
+    .helpline-btn {
+        font-size: 9px;
+        padding: 4px 7px;
+    }
+    .botMessages .bot-avatar-sm {
+        display: none; /* hide avatar on tiny screens to gain space */
+    }
+    .chat.botMessages {
+        max-width: 96%;
+    }
+}

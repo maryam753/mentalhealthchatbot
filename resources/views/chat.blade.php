@@ -11,10 +11,18 @@
 </head>
 <body>
 
+<!-- Mobile sidebar toggle (hamburger) -->
+<button class="sidebar-toggle" id="sidebarToggle" aria-label="Open menu">
+    <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+</button>
+
+<!-- Overlay (tap to close sidebar on mobile) -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
 <div class="chat-container">
 
     <!-- LEFT SIDEBAR -->
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
 
         <!-- Logo -->
         <div class="logo">
@@ -357,6 +365,23 @@ window.newChat = function () {
     }
 
     $(document).ready(function() {
+
+        // ── Mobile sidebar toggle ──
+        $('#sidebarToggle').on('click', function() {
+            $('#sidebar').addClass('open');
+            $('#sidebarOverlay').addClass('show');
+        });
+        $('#sidebarOverlay').on('click', function() {
+            $('#sidebar').removeClass('open');
+            $(this).removeClass('show');
+        });
+        // Close sidebar when a thread is tapped on mobile
+        $(document).on('click', '.thread-item', function() {
+            if (window.innerWidth <= 640) {
+                $('#sidebar').removeClass('open');
+                $('#sidebarOverlay').removeClass('show');
+            }
+        });
 
         {{-- FIX: replaced bare $.post with $.ajax so CSRF header is sent for guests --}}
         $.ajax({
