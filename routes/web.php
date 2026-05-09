@@ -9,6 +9,10 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\Auth\SocialController;
 use App\Http\Controllers\Auth\GitHubController;
 
+Route::get('/debug', function () {
+    return 'Laravel is working';
+});
+
 Route::post('/rename-thread', [ChatController::class, 'renameThread']);
 Route::post('/delete-thread', [ChatController::class, 'deleteThread']);
 Route::get('/auth/github', [GitHubController::class, 'redirect'])
