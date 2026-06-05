@@ -12,8 +12,12 @@ return new class extends Migration
     public function up()
 {
     Schema::table('moods', function (Blueprint $table) {
-        $table->foreignId('user_id')->nullable()->after('id');
-        $table->string('mood')->nullable()->after('user_id');
+       if (!Schema::hasColumn('moods', 'user_id')) {
+                $table->foreignId('user_id')->nullable()->after('id');
+            }
+            if (!Schema::hasColumn('moods', 'mood')) {
+                $table->string('mood')->nullable()->after('user_id');
+            }
     });
 }
 
