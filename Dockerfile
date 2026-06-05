@@ -11,13 +11,12 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     zip
 
-RUN docker-php-ext-install zip
+RUN docker-php-ext-install zip pdo pdo_mysql mbstring tokenizer xml ctype
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN composer install --no-dev --optimize-autoloader
 RUN chmod -R 777 storage bootstrap/cache
+EXPOSE 8000
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
 
-EXPOSE 10000
-
-CMD php artisan serve --host=0.0.0.0 --port=10000
