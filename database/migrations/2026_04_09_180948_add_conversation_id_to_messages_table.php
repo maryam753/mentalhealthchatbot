@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('messages', function (Blueprint $table) {
+           if (!Schema::hasColumn('messages', 'conversation_id')) {
             $table->string('conversation_id')->nullable()->after('user_id');
+        }
         });
     }
 

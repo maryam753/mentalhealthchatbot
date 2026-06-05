@@ -28,11 +28,11 @@ Route::get('/chat-history', [ChatController::class, 'chatHistory']);
 Route::get('/recent-threads', [ChatController::class, 'recentThreads']);
 
 Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/home', function () {
     return view('index');
 });
+// Route::get('/home', function () {
+//     return view('index');
+// });
 Route::middleware(['web'])->group(function () {
 
     Route::get('/chat', function () {
